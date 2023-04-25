@@ -3,16 +3,16 @@ import styled, { css } from 'styled-components';
 
 const sizes = {
   large: {
-    width: '200px',
-    height: '50px',
+    width: '250px',
+    height: '60px',
     fontWeight: 'bold',
   },
   medium: {
-    width: '130px',
-    height: '45px',
+    width: '160px',
+    height: '50px',
   },
   small: {
-    width: '100px',
+    width: '120px',
     height: '40px',
   },
 };
@@ -23,7 +23,7 @@ const styles = {
     backgroundColor: '#7FFFD4',
   },
   negative: {
-    color: '#d63031',
+    color: '#ff0000',
     border: '2px solid #fab1a0',
     backgroundColor: '#fab1a0',
   },
@@ -61,6 +61,7 @@ const StButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
 
+  //sizes 객체에서 가져오기
   ${({ size }) => {
     const { height, width, fontWeight } = sizes[size];
       return css`
