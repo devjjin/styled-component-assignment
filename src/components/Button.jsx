@@ -61,7 +61,7 @@ const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
-const StButton = styled.button`
+export const StButton = styled.button`
   // 공통
   display: flex;
   justify-content: center;
