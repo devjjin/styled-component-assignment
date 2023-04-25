@@ -31,21 +31,22 @@ const styles = {
 };
 
 function Button() {
-  const iconTheme = (type) =>
-  type === 'primary' ? <VscChevronRight /> : type === 'negative' ? <VscBellDot /> :'';
+  const iconTheme = (type) => type === 'primary' ? <VscChevronRight /> : type === 'negative' ? <VscBellDot /> : '';
 
+  const primaryClick  = () => alert('버튼을 만들어 보세요');
+  const negativeClick = () => prompt('어렵나요?');
 
   return (
     <>
       <h1>Button</h1>
       <ButtonContainer>
-        <StButton size='large' primary>Large Primary Button{iconTheme('primary')}</StButton>
+        <StButton size='large' primary onClick={primaryClick}>Large Primary Button{iconTheme('primary') }</StButton>
         <StButton size='medium' primary>Medium </StButton>
         <StButton size='small' primary>Small</StButton>
       </ButtonContainer>
       {/* Negative */}
       <ButtonContainer>
-        <StButton size='large' negative>Large Negative Button{iconTheme('negative')}</StButton>
+        <StButton size='large' negative onClick={negativeClick }>Large Negative Button{iconTheme('negative')}</StButton>
         <StButton size='medium' negative>Medium</StButton>
         <StButton size='small' negative>Small</StButton>
       </ButtonContainer>
@@ -68,7 +69,7 @@ const StButton = styled.button`
   font-weight: normal;
   border-radius: 10px;
   cursor: pointer;
-
+  &:active { filter: brightness(0.9); }
   ${({ size }) => {
     const { height, width, fontWeight } = sizes[size];
       return css`
@@ -84,9 +85,10 @@ const StButton = styled.button`
     return css`
       color: ${color};
       border: ${border};
-      background-color: ${size !== 'large' ? backgroundColor : 'transparent'};
+      background-color: ${size !== 'large' ? backgroundColor : '#FFFFFF'};
     `;
   }}
+  
 `;
 
 export default Button;
