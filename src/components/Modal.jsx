@@ -11,6 +11,8 @@ function Modal() {
   const openModalHandler = () => setShowModal(!showModal);
   const openSecModalHandler = () => setSecShowModal(!secShowModal);
 
+  const handleWrapClick = () => setSecShowModal(false);
+
   // 이벤트 버블링 막기(모달 내부 눌러도 외부영역 까지 전파되지 않게 해서)
   const handleModalClick = e =>  e.stopPropagation();
 
@@ -28,7 +30,7 @@ function Modal() {
 
       {showModal && (
         <Wrap>
-          <ModalContainer ref={modalRef}>
+          <ModalContainer ref={modalRef} onClick={handleModalClick}>
             <p>닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지 않아요.</p>
             <ButtonContainer>
               <StButton negative size='small' onClick={() => setShowModal(false)}>
@@ -43,7 +45,7 @@ function Modal() {
       )}
 
       {secShowModal && (
-        <Wrap>
+        <Wrap onClick={handleWrapClick}>
           <ModalContainer ref={modalRef} onClick={handleModalClick}>
             <p>닫기 버튼 1개가 있고,외부 영역을 누르면 모달이 닫혀요.</p>
             <CloseButton onClick={() => setSecShowModal(false)}>
