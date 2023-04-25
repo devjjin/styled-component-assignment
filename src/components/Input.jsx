@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { StButton } from './Button';
+import styled from 'styled-components';
 
 function Input() {
   const initialValues = { name: '', price: '' };
   const [inputValues, setInputValues] = useState(initialValues);
-
+  const { name, price } = inputValues;
+  
   // 천단위 표현 정규식
   const addComma = price => {
     const returnString = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -28,7 +30,7 @@ function Input() {
   const onSubmitHandler = e => {
     e.preventDefault();
 
-    if (!inputValues.name.trim() || !inputValues.price.trim()) {
+    if (!name.trim() || !price.trim()) {
       alert('이름과 가격을 입력하세요');
       return;
     }
@@ -41,17 +43,38 @@ function Input() {
   return (
     <div>
       <h1>Input</h1>
-      <form onSubmit={onSubmitHandler}>
-        <label htmlFor="name">이름</label>
-        <input id="name" value={inputValues.name} onChange={onChangeHandler} />
-        <label htmlFor="price">가격</label>
-        <input id="price" value={addComma(inputValues.price)} type="text" onChange={onChangeHandler} placeholder='0' />
-        <StButton size="small" primary type="submit">
-          저장
-        </StButton>
-      </form>
+      <Form onSubmit={onSubmitHandler}>
+        <label htmlFor='name'>이름</label>
+        <StInput
+          id='name'
+          value={name}
+          onChange={onChangeHandler}
+        />
+        <label htmlFor='price'>가격</label>
+        <StInput
+          id='price'
+          value={addComma(price)}
+          type='text'
+          onChange={onChangeHandler}
+          placeholder=''
+        />
+        <StButton size='small' primary type='submit'> 저장 </StButton>
+      </Form>
     </div>
   );
 }
 
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+`
+
+const StInput = styled.input`
+  width: 200px;
+  height: 25px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+`
 export default Input;
