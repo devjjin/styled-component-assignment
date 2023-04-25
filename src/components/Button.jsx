@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { VscChevronRight, VscBellDot } from 'react-icons/vsc';
 
 const sizes = {
   large: {
@@ -30,17 +31,21 @@ const styles = {
 };
 
 function Button() {
+  const iconTheme = (type) =>
+  type === 'primary' ? <VscChevronRight /> : type === 'negative' ? <VscBellDot /> :'';
+
+
   return (
     <>
       <h1>Button</h1>
       <ButtonContainer>
-        <StButton size='large' primary>Large Primary Button</StButton>
+        <StButton size='large' primary>Large Primary Button{iconTheme('primary')}</StButton>
         <StButton size='medium' primary>Medium </StButton>
         <StButton size='small' primary>Small</StButton>
       </ButtonContainer>
       {/* Negative */}
       <ButtonContainer>
-        <StButton size='large' negative>Large Negative Button</StButton>
+        <StButton size='large' negative>Large Negative Button{iconTheme('negative')}</StButton>
         <StButton size='medium' negative>Medium</StButton>
         <StButton size='small' negative>Small</StButton>
       </ButtonContainer>
@@ -57,6 +62,9 @@ const ButtonContainer = styled.div`
 
 const StButton = styled.button`
   // 공통
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: normal;
   border-radius: 10px;
   cursor: pointer;
